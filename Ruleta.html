@@ -1,0 +1,228 @@
+<html lang="es" class=" ">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,user-scalable=0,initial-scale=1" /><link rel="stylesheet" type="text/css" href="//es.piliapp.com/assets/us2/v2/c50796o3r7/1ape0.css" /><title>La Ruleta Aleatoria </title>
+<script>DEFAULT_TITLE = "La Ruleta Aleatoria ";</script>
+<link rel="shortcut icon" href="//assets.piliapp.com/s3pxy/random/wheel/favicon.ico" />
+<meta property="og:image" content="https://assets.piliapp.com/s3lnk/random/wheel/screenshot.png" />
+<link href='https://es.piliapp.com/random/wheel/' rel='canonical'/>
+
+<script type="text/javascript">function rd_add_qs(e){var n=window.location,o=n.search,d=window.filtered_qs||[],a=0<d.length?"&"+d.join("&"):"",s=n.pathname+(o?o+"&":"?")+e+a+n.hash;-1===o.indexOf(e)&&((adsbygoogle=window.adsbygoogle||[]).pauseAdRequests=1,window.gpt_pauseads=!0,document.documentElement.style.display="none",setTimeout(function(){n.replace(s)},0))}
+</script><script type="text/javascript">-1!==navigator.userAgent.indexOf("Macintosh")&&"ontouchend"in document&&rd_add_qs("_d=ipados");</script><script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-973474-10', 'auto'); 
+ga('send', 'pageview');
+</script><script>var GA_EVENT_ID = "UA-973474-16";</script><script type="text/javascript">window.addEventListener("error",function(e){if(!((e=e||window.event)&&e.message&&e.lineno&&e.colno))return!0;var n=e.message.split("Error:")[1]+" at "+e.filename.replace(/\/$/,"").split("/").pop()+"#"+e.lineno+":"+e.colno,r=window,t="_lasterr";r[t]=r[t]||1,r[t]!==n&&(r[t]=n,ga.hasOwnProperty("getByName")&&ga.getByName("event")||ga("create",GA_EVENT_ID,"auto",{name:"event"}),ga("event.send","event","js-error",n,navigator.userAgent,{nonInteraction:0}))},!1);</script><script type="text/javascript">window.addEventListener("load",function(){var e=document;if(-1===e.cookie.indexOf("npa=1"))return window._CC=0;var n="script",t=e.getElementsByTagName(n)[0],r=e.createElement(n);r.async=1,r.src="/assets/us2/v2/58a6126jai/3f8n7.js",t.parentNode.insertBefore(r,t)});</script>
+</head>
+<body>
+<div class="container">
+    <div class="row no-gutters"><div class="col-12">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="breadcrumb">
+    <a class="navbar-brand" href="https://es.piliapp.com">
+    PiliApp</a>
+
+<button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/random/wheel/">La Ruleta Aleatoria </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/random/dice/">Tirar el dado</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/random/number/">Generador de números aleatorios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/random/password/">Password Generator</a>
+        </li>
+      </ul>
+
+    </div>
+</nav>
+    </div></div>
+</div><!-- /.container -->
+<div class="container">
+<div id="piliapp" class="row">
+    
+    <div class="col-12"><div class="row">
+    <div id="header" class="col-12 col-xl-8 text-center pt-3 pb-3" v-bind:class="{'show-banner':show_banner}">
+        <h1 v-bind:style="{visibility:warning?'hidden':'visible'}">La Ruleta Aleatoria </h1>
+        <div class="h1" id="banner" v-bind:style="{background:banner_bgcolor}" v-on:click="show_banner = false">
+            <span v-html="banner_html">_</span>
+            <button id="hide-result" v-bind:disabled="show_banner !== 'show'" v-show="show_banner == 'show'" v-on:click.stop="hideResult()" v-bind:title="hideThisResultTxt">S</button>
+            <button id="close-banner" v-on:click="show_banner = false" ref="closeBtn">X</button>
+        </div>
+    </div>
+    
+    <div class="d-none d-xl-flex col-xl-4 align-items-center">
+        <div v-show="!warning">
+            
+<input type="button" class="spin-btn btn btn-primary btn-lg" 
+    value="Iniciar" v-bind:disabled="is_moving" ref="spinBtn" />
+<input type="button" class="reset-btn btn btn-danger btn-sm" 
+    value="Reiniciar" v-bind:disabled="is_moving || names_striked.length == 0"
+    title="mostrar todos los elementos ocultos"
+    v-on:click="reset(1)" ref="resetBtn" />
+        </div>
+    </div>
+
+    </div></div><!-- /.row -->
+
+    <div class="col-12"><div class="row">
+
+    <div class="col-12 col-xl-8" id="results">
+        <div id="wheel-wrapper" v-bind:class="{warning:warning}">
+            <div class="warning-text" v-show="warning === 'limit'" v-cloak>
+                Demasiados elementos en la lista. No puede exceder los 100 artículos.            </div>
+            <div class="warning-text" v-show="warning === 'empty'" v-cloak>
+                Por favor ingrese a la lista                <div class="arrow-to-list d-none d-xl-block">→ → → </div>
+                <div class="arrow-to-list d-block d-xl-none">↓ ↓ ↓</div>
+            </div>
+            <div class="warning-text" v-show="warning === 'reset'" v-cloak>
+                ¿Quieres resetear?                <br>
+                <input type="button" class="btn btn-danger btn-lg" value="Reiniciar" v-on:click="reset(0)" />
+            </div>
+            <div v-show="!is_spinned && !warning" id="pls-click">
+                haz clic para girarlo            </div>
+            <span id="test-text"></span>
+            <div id="wheel-bg" v-show="!warning" v-cloak></div>
+            <canvas id="wheel" v-show="!warning"></canvas>
+            <span id="wheel-center" v-show="!warning"></span>
+            <span id="wheel-pin" v-show="!warning">➤</span>
+        </div>
+
+        <div class="d-block d-lg-none controls text-center mt-3">
+            <div v-show="!warning">
+            <div>
+                
+<input type="button" class="spin-btn btn btn-primary btn-lg" 
+    value="Iniciar" v-bind:disabled="is_moving" ref="spinBtn" />
+<input type="button" class="reset-btn btn btn-danger btn-sm" 
+    value="Reiniciar" v-bind:disabled="is_moving || names_striked.length == 0"
+    title="mostrar todos los elementos ocultos"
+    v-on:click="reset(1)" ref="resetBtn" />
+            </div>
+            <div id="hide-result-wrapper" v-bind:style="{visibility:show_banner === 'show'?'visible':'hidden'}" class="mt-2">
+                <button class="btn btn-outline-danger btn-sm" v-on:click="hideResult()" v-html="hideThisResult" v-cloak></button>
+            </div>
+            </div>
+        </div>
+
+    </div><!-- /#results -->
+
+    <div class="col-12 col-xl-4 mt-3 mt-xl-0 d-flex flex-column" v-bind:class="is_moving ? 'disabled' : ''" id="sidebar">
+        <div v-show="is_moving" id="names-disabled" class="names"></div>
+        <textarea v-show="mode == 'edit'" id="names" class="names" placeholder="Ingrese el nombre de las personas aquí y sepárelo con una línea diferente."
+            v-bind:disabled="is_moving"
+            v-model="names_raw" v-on:blur="mode='show'" ></textarea> 
+        <div v-show="mode == 'show'" id="names-show" class="names" v-on:click="edit()" v-cloak>
+            <div v-for="(name, idx) in names_list" v-on:click.stop="editRow(idx)" v-bind:class="{'strike':isStriked(idx)}">{{ name }}</div> 
+        </div>
+        <div v-show="mode == 'strike'" id="names-strike" class="names" v-cloak>
+            <div v-for="(name, idx) in names_list">
+                <div v-if="isGoodName(name)"><label><input type="checkbox" 
+                    v-on:click="strikeName(idx, $event)" v-bind:checked="isStriked(idx)" />
+                    <span v-bind:class="{'strike':isStriked(idx)}">{{ name }}</span></label></div>
+            </div> 
+        </div>
+                <div id="edit-bar" v-bind:style="{visibility:is_moving?'hidden':'visible'}">
+                <button v-show="mode === 'show'" id="edit-title" 
+                    title="modificar el título"
+                    class="btn btn-outline-secondary btn-sm float-left"
+                    v-on:click="show_banner=false;editTitle();"
+                    >Título</button>
+
+                <button class="btn btn-outline-secondary btn-sm" v-show="mode === 'show'" v-on:click="edit()" ref="editBtn" v-bind:disabled="is_moving">Editar</button>
+                                <button class="btn btn-outline-secondary btn-sm float-right" v-cloak v-show="mode === 'edit'" v-on:click="mode='show'">Finalizar</button>
+
+                <button class="btn btn-outline-secondary btn-sm float-right" v-cloak v-show="mode === 'strike'" v-on:click="mode = 'show'">Finalizar</button>
+                <button class="btn btn-outline-secondary btn-sm float-right" v-show="mode === 'show'"  v-on:click="mode = 'strike'"
+                    title="editar elementos ocultos en la lista"
+                    >esconder...</button>
+                <button class="btn btn-outline-secondary btn-sm float-right" id="strike-reset" v-cloak v-show="names_striked.length > 0 && mode !=='edit'"
+                    v-on:click="reset(0)"
+                    title="mostrar todos los elementos ocultos">Reiniciar</button>
+                
+
+        </div>
+
+        <div class="d-none d-xl-block">
+        <div id="shortcut" v-show="!warning && mode === 'show'">
+            <div> <span class="key">SPACE</span> Gíralo </div>
+            <div> <span class="key">ESC</span> Cerrar el banner </div>
+            <div> <span class="key">H</span> Ocultar el elemento seleccionado </div>
+            <div> <span class="key">R</span> Reiniciar </div>
+            <div> <span class="key">E</span> Editar </div>
+        </div>
+        </div>
+
+    </div><!-- /#sidebar -->
+    </div></div>
+
+
+<div class="col-12 text-center clearfix">
+</div>
+
+    </div><!-- #piliapp -->
+
+    <div class="row">
+<div class="col-12 col-md-8 offset-md-2 col-xl-8 offset-xl-0" id="desc">
+<p>
+Esta es una herramienta en línea para elegir el nombre o el artículo al azar.También se llama selector de nombres aleatorios, rueda de nombres o ruleta en línea.A veces es difícil para las personas tomar decisiones. Luego haga una lista de opciones o candidatos existentes y luego seleccione al azar uno de ellos. En este caso, puede utilizar nuestra herramienta para tomar decisiones. Sencillo y divertido.Puede modificar los nombres en textarea, poner un nombre por línea.Los nombres se dibujarán en el círculo.Simplemente haga clic en la rueda circular, comenzará a girar durante unos segundos. El resultado es seleccionar al azar uno de los nombres de la lista.También proporcionamos útiles teclas de acceso directo si está utilizando el escritorio.</p>
+<p>
+¿Qué pasa cuando empiezas a rotar (hacer clic)?El programa de esta página generará un número realmente aleatorio mediante la API de JavaScript nativa y calculará este número para apuntar a uno de los nombres.Luego, la rueda circular comienza a girar utilizando el método CSS3-2D.</p>
+</div>
+    </div>
+
+    <div class="footer col-12">
+        <div class="row">
+            <!-- col-xl-9 -->
+            <div class="col-12 col-xl-8 offset-xl-2 text-center mt-5">
+                        
+
+<style type="text/css">.base-footer div{text-align:center;margin:.5em auto}@media only screen and (max-width:575px){.base-footer div{display:inline}.base-footer div:last-child:before{content:" | "}}.base-footer a{height:1rem;display:inline-block}#languages.win7{background:url(//cdnjs.cloudflare.com/ajax/libs/twemoji/12.0.4/2/svg/1f310.svg) no-repeat;background-size:1em;display:inline-block;width:1em;height:1em;line-height:1em;text-indent:-999em;overflow:hidden}</style>
+<div class="base-footer">
+
+<div>
+<a href="https://es.piliapp.com">Inicio</a> | 
+<a href="/label/symbols/">Emoji y símbolos</a> | <a href="/label/text/">Herramienta de texto</a> | <a href="/label/time-and-date/">Hora y fecha</a> | <a href="/label/utilities/">Utilidades</a></div>
+<div>
+<a rel="nofollow" href="/feedback/report/" target="_blank">Notificar un problema</a>
+
+| <a href="/lnk/*http://global-blog.piliapp.com">Blog</a>
+| <a href="/page/privacy/">Privacidad</a>
+| <a href="/page/terms/">Términos</a>
+| <a id="languages" href="/page/language/?app_uri=%2Frandom%2Fwheel%2F">🌐</a> | © 2021 <a style="color:gray;" href="/lnk/*https://pili.app">pili.app</a>
+</div>
+</div>
+<script type="text/javascript">0<navigator.userAgent.indexOf("Windows NT 6.1")&&document.querySelector("#languages").classList.add("win7");</script>            </div>
+        </div>
+    </div>
+</div><!-- /.container -->
+<script>
+//var MP3_URL = '//assets.piliapp.com/s3pxy/random/wheel/TYPE2.mp3';
+var MP3_URL = '//assets.piliapp.com/s3pxy/random/wheel/TYPE.mp3?cache=1';
+var I18N = {
+    new_title: "Ingrese el nuevo t\u00edtulo.",
+    one_hidden: "{1} se ha ocultado",
+    hide_one: "ocultar {1}",
+    reset_confirm: "\u00bfEst\u00e1 seguro que quiere reiniciar?",
+};
+var IS_SAFARI =  navigator.userAgent.indexOf('Safari')!==-1 && navigator.userAgent.indexOf('Chrome') === -1;
+</script>
+
+
+<script>
+(typeof ''.repeat == 'function') || document.write(unescape("%3Cscript%20src%3D%22%2F%2Fes.piliapp.com%2Fstatic%2Fs3%2Fapps%2Fpolyfill%2Fstring_repeat.min.js%22%3E%3C%2Fscript%3E"));
+</script>
+<script src="//es.piliapp.com/assets/us2/v2/c17a196cju8eziwc2drr7624o/62tig.js"></script>
+
+</body>
+</html>
